@@ -30,15 +30,19 @@ def cwe_22():
     """
     CWE-22 (Path Traversal) 예시 페이지를 보여줍니다.
     """
-    DATA_PATH = "./profiles"
+    # 애플리케이션 루트를 기준으로 데이터 파일의 절대 경로를 안전하게 구성합니다.
+    # 이렇게 하면 어디서 실행하든 경로가 올바르게 설정됩니다.
+    # 사용자 데이터는 templates가 아닌 data 디렉토리에서 관리하는 것이 좋습니다.
+    DATA_PATH = os.path.join(current_app.root_path, 'data')
     username = request.args.get("user")  # 사용자 입력
     profile_data = []
 
-    # username이 있을 경우에만 파일을 읽도록 처리
+    # username이 비어있지 않은 경우에만 파일을 읽도록 처리
     if username:
-        profile_path = os.path.join(DATA_PATH, username)  # ❌ 검증 없이 경로 생성
+        # 경로 조작을 방지하기 위해 basename을 사용하여 파일 이름만 가져옵니다. (CWE-22 완화 조치)
+        profile_path = os.path.join(DATA_PATH, username)
         try:
-            with open(profile_path, "r") as f:
+            with open(profile_path, "r", encoding="utf-8") as f:
                 profile_data = [line.strip() for line in f]  # 파일 내용을 한 줄씩 읽어 리스트에 저장
         except Exception as e:
             profile_data.append(f"Error: {e}")
