@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A09: Security Logging and Alerting Failures</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 2em;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2em 3em;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+        a { color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A09: Security Logging and Alerting Failures (보안 로깅 및 경보 실패)</h1>
+        <p>이 페이지는 보안 이벤트가 적절히 기록되거나 탐지되지 않아 발생할 수 있는 취약점을 테스트하기 위한 공간입니다.</p>
+        <p>예를 들어, 공격 시도에 대한 로그나 경보가 누락되는 시나리오를 구현할 수 있습니다.</p>
+        <p>아래에서 A09와 관련된 CWE(Common Weakness Enumeration) 항목들을 확인하고 자세한 정보를 얻을 수 있습니다.</p>
+        <hr>
+        <h3>관련 CWE 정보</h3>
+        <ul>
+            {% for cwe in cwes %}
+            <li><a href="{{ cwe.url }}"><b>{{ cwe.id }}</b>: {{ cwe.name }}</a> - {{ cwe.description }}</li>
+            {% endfor %}
+        </ul>
+        <br>
+        <a href="/">메인 페이지로 돌아가기</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A02: Security Misconfiguration</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 2em;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2em 3em;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+        a { color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A02: Security Misconfiguration (보안 설정 오류)</h1>
+        <p>이 페이지는 보안 설정이 올바르게 구성되지 않았을 때 발생할 수 있는 취약점을 테스트하기 위한 공간입니다.</p>
+        <p>예를 들어, 불필요한 기능이나 서비스가 외부에 노출된 상태를 시나리오로 구현할 수 있습니다.</p>
+        <p>아래에서 A02와 관련된 CWE(Common Weakness Enumeration) 항목들을 확인하고 자세한 정보를 얻을 수 있습니다.</p>
+        <hr>
+        <h3>관련 CWE 정보</h3>
+        <ul>
+            {% for cwe in cwes %}
+            <li><a href="{{ cwe.url }}"><b>{{ cwe.id }}</b>: {{ cwe.name }}</a> - {{ cwe.description }}</li>
+            {% endfor %}
+        </ul>
+        <br>
+        <a href="/">메인 페이지로 돌아가기</a>
+    </div>
+</body>
+</html>

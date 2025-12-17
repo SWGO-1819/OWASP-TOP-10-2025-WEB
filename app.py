@@ -5,6 +5,17 @@ from flask import Flask, render_template
 
 # --- 취약점 Blueprint 임포트 ---
 from route.A01 import a01_bp
+from route.A02 import a02_bp
+from route.A03 import a03_bp
+from route.A04 import a04_bp
+from route.A05 import a05_bp
+from route.A06 import a06_bp
+from route.A07 import a07_bp
+from route.A08 import a08_bp
+from route.A09 import a09_bp
+from route.A10 import a10_bp
+
+
 
 # Flask 애플리케이션 생성
 app = Flask(__name__)
@@ -14,17 +25,17 @@ app.secret_key = 'your-very-secret-key'
 
 # OWASP Top 10 목록을 정의합니다.
 # 이 데이터는 나중에 별도의 설정 파일로 분리할 수도 있습니다.
-OWASP_TOP_10_2021 = [
+OWASP_TOP_10_2025 = [
     {"id": "A01", "name": "Broken Access Control", "url": "/A01"},
-    {"id": "A02", "name": "Cryptographic Failures", "url": "/A02"},
-    {"id": "A03", "name": "Injection", "url": "/A03"},
-    {"id": "A04", "name": "Insecure Design", "url": "/A04"},
-    {"id": "A05", "name": "Security Misconfiguration", "url": "/A05"},
-    {"id": "A06", "name": "Vulnerable and Outdated Components", "url": "/A06"},
-    {"id": "A07", "name": "Identification and Authentication Failures", "url": "/A07"},
-    {"id": "A08", "name": "Software and Data Integrity Failures", "url": "/A08"},
-    {"id": "A09", "name": "Security Logging and Monitoring Failures", "url": "/A09"},
-    {"id": "A10", "name": "Server-Side Request Forgery (SSRF)", "url": "/A10"},
+    {"id": "A02", "name": "Security Misconfiguration", "url": "/A02"},
+    {"id": "A03", "name": "Software Supply Chain Failures", "url": "/A03"},
+    {"id": "A04", "name": "Cryptographic Failures", "url": "/A04"},
+    {"id": "A05", "name": "Injection", "url": "/A05"},
+    {"id": "A06", "name": "Insecure Design", "url": "/A06"},
+    {"id": "A07", "name": "Authentication Failures", "url": "/A07"},
+    {"id": "A08", "name": "Software or Data Integrity Failures", "url": "/A08"},
+    {"id": "A09", "name": "Security Logging and Alerting Failures", "url": "/A09"},
+    {"id": "A10", "name": "Mishandling of Exceptional Conditions", "url": "/A10"},
 ]
 
 @app.route('/')
@@ -33,7 +44,7 @@ def index():
     메인 인덱스 페이지를 렌더링합니다.
     OWASP Top 10 각 항목에 대한 링크 목록을 보여줍니다.
     """
-    return render_template('index.html', vulnerabilities=OWASP_TOP_10_2021)
+    return render_template('index.html', vulnerabilities=OWASP_TOP_10_2025)
 
 # --- Blueprint 등록 ---
 # route 폴더에 정의된 Blueprint들을 여기에 등록합니다.
@@ -43,6 +54,15 @@ def index():
 
 # 취약점 Blueprint를 애플리케이션에 등록합니다.
 app.register_blueprint(a01_bp)
+app.register_blueprint(a02_bp)
+app.register_blueprint(a03_bp)
+app.register_blueprint(a04_bp)
+app.register_blueprint(a05_bp)
+app.register_blueprint(a06_bp)
+app.register_blueprint(a07_bp)
+app.register_blueprint(a08_bp)
+app.register_blueprint(a09_bp)
+app.register_blueprint(a10_bp)
 
 
 # 애플리케이션 실행
