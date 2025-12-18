@@ -10,12 +10,11 @@
     <div class="container">
         {% for cwe in cwes %}
             {% if cwe.id == 'CWE-22' %}
-                <h1>{{ cwe.id }}: {{ cwe.name }}</h1>
+                <h2>{{ cwe.id }}: {{ cwe.name }}</h2>
                 <p class="creator-info">제작자 : {{ cwe.who }}</p>
             {% endif %}
         {% endfor %}
         <hr>
-        <h2>CWE-22: 경로 탐색(Path Traversal)</h2>
         <p>사용자 이름을 입력하여 프로필을 조회하세요. 이 기능에는 경로 탐색 취약점이 존재할 수 있습니다.</p>
         <p>예: <code>../../../../etc/passwd</code> (Linux) 또는 <code>../../../../windows/win.ini</code> (Windows)</p>
         <form method="GET" action="/A01/cwe-22">
