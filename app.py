@@ -23,6 +23,7 @@ app = Flask(__name__)
 # 애플리케이션의 기본 설정을 할 수 있습니다. (예: 비밀키)
 app.secret_key = 'your-very-secret-key'
 
+
 # OWASP Top 10 목록을 정의합니다.
 # 이 데이터는 나중에 별도의 설정 파일로 분리할 수도 있습니다.
 OWASP_TOP_10_2025 = [
