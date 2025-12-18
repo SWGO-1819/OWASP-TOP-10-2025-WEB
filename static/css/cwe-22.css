@@ -1,0 +1,79 @@
+@charset "utf-8";
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f4f7f9;
+    margin: 0;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    }
+.container {
+    background-color: #ffffff;
+    padding: 2em 3em;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+a { color: #007bff; }
+.profile-output {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    padding: 1em;
+    border-radius: 4px;
+    min-height: 50px;
+    white-space: pre-wrap; /* 공백을 유지하면서 자동 줄 바꿈을 허용합니다. */
+    word-wrap: break-word; /* 긴 단어나 URL이 박스를 넘어가지 않도록 강제로 줄 바꿈합니다. */
+    word-break: break-all;
+}
+        /* 팝업(모달) 스타일 */
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    position: relative;
+}
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    }
+#openModalBtn {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+    border: 1px solid #007bff;
+    background-color: #fff;
+    color: #007bff;
+    border-radius: 4px;
+}
+.creator-info {
+    text-align: right;
+    margin-top: -1.5rem; /* h1 태그와의 간격을 줄여 자연스럽게 배치 */
+}

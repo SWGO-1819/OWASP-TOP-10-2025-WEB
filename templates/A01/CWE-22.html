@@ -4,94 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CWE-22: Path Traversal</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f4f7f9;
-            margin: 0;
-            padding: 2em;
-            display: flex;
-            justify-content: center;
-        }
-        .container {
-            background-color: #ffffff;
-            padding: 2em 3em;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 800px;
-        }
-        a { color: #007bff; }
-        .profile-output {
-            background-color: #e9ecef;
-            border: 1px solid #ced4da;
-            padding: 1em;
-            border-radius: 4px;
-            min-height: 50px;
-        }
-        /* 팝업(모달) 스타일 */
-        .modal {
-            display: none; /* 기본적으로 숨김 */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 8px;
-            position: relative;
-        }
-        .close-button {
-            color: #aaa;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        #openModalBtn {
-            font-size: 0.7rem;
-            padding: 5px 10px;
-            margin-left: 10px;
-            cursor: pointer;
-            vertical-align: middle;
-            border: 1px solid #007bff;
-            background-color: #fff;
-            color: #007bff;
-            border-radius: 4px;
-        }
-        .creator-info {
-            text-align: right;
-            margin-top: -1.5rem; /* h1 태그와의 간격을 줄여 자연스럽게 배치 */
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cwe-22.css') }}">
 </head>
 <body>
     <div class="container">
         {% for cwe in cwes %}
             {% if cwe.id == 'CWE-22' %}
-                <h1>{{ cwe.id }}: {{ cwe.name }}</h1>
+                <h2>{{ cwe.id }}: {{ cwe.name }}</h2>
                 <p class="creator-info">제작자 : {{ cwe.who }}</p>
             {% endif %}
         {% endfor %}
         <hr>
-        <h2>CWE-22: 경로 탐색(Path Traversal)</h2>
         <p>사용자 이름을 입력하여 프로필을 조회하세요. 이 기능에는 경로 탐색 취약점이 존재할 수 있습니다.</p>
         <p>예: <code>../../../../etc/passwd</code> (Linux) 또는 <code>../../../../windows/win.ini</code> (Windows)</p>
         <form method="GET" action="/A01/cwe-22">
@@ -102,7 +25,7 @@
         <h3>조회 결과</h3>
         <pre class="profile-output">{% for line in profile %}{{ line }}{% endfor %}</pre>
         <br>
-        <a href="/A01">A01 페이지로 돌아가기</a> <button id="openModalBtn">설명 보기</button>
+        <a href="/A01">A01 페이지로 돌아가기</a><button id="openModalBtn">설명 보기</button>
 
         <!-- 설명 팝업(모달) -->
         <div id="descriptionModal" class="modal">
