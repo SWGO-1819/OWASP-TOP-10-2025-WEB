@@ -29,6 +29,57 @@
             border-radius: 4px;
             min-height: 50px;
         }
+        /* 팝업(모달) 스타일 */
+        .modal {
+            display: none; /* 기본적으로 숨김 */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #openModalBtn {
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+            vertical-align: middle;
+            border: 1px solid #007bff;
+            background-color: #fff;
+            color: #007bff;
+            border-radius: 4px;
+        }
+        .creator-info {
+            text-align: right;
+            margin-top: -1.5rem; /* h1 태그와의 간격을 줄여 자연스럽게 배치 */
+        }
     </style>
 </head>
 <body>
@@ -36,7 +87,7 @@
         {% for cwe in cwes %}
             {% if cwe.id == 'CWE-22' %}
                 <h1>{{ cwe.id }}: {{ cwe.name }}</h1>
-                <p>{{ cwe.who }}</p>
+                <p class="creator-info">제작자 : {{ cwe.who }}</p>
             {% endif %}
         {% endfor %}
         <hr>
@@ -51,7 +102,44 @@
         <h3>조회 결과</h3>
         <pre class="profile-output">{% for line in profile %}{{ line }}{% endfor %}</pre>
         <br>
-        <a href="/A01">A01 페이지로 돌아가기</a>
+        <a href="/A01">A01 페이지로 돌아가기</a> <button id="openModalBtn">설명 보기</button>
+
+        <!-- 설명 팝업(모달) -->
+        <div id="descriptionModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                {% for cwe in cwes %}
+                    {% if cwe.id == 'CWE-22' %}
+                        <h2>{{ cwe.id }} 상세 설명</h2>
+                        <p>{{ cwe.description }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
+
+    <script>
+        // 팝업(모달) 관련 스크립트
+        var modal = document.getElementById("descriptionModal");
+        var btn = document.getElementById("openModalBtn");
+        var span = document.getElementsByClassName("close-button")[0];
+
+        // "설명 보기" 버튼 클릭 시 팝업 열기
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // 'x' 버튼 클릭 시 팝업 닫기
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // 팝업 외부 영역 클릭 시 팝업 닫기
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
