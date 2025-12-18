@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 # from route.sign import sign_bp  # 나중에 필요시 주석 해제하여 사용
 # from route.userlist import list_bp
@@ -15,10 +16,27 @@ from route.A08 import a08_bp
 from route.A09 import a09_bp
 from route.A10 import a10_bp
 
+from models import db
 
 
 # Flask 애플리케이션 생성
 app = Flask(__name__)
+
+# 데이터베이스 파일이 저장될 instance 폴더가 존재하는지 확인하고, 없으면 생성합니다.
+# 이 코드는 SQLAlchemy 설정 전에 위치해야 합니다.
+try:
+    os.makedirs(app.instance_path)
+except OSError:
+    pass
+
+# 데이터베이스 경로를 Flask의 공식 instance_path를 사용하도록 수정합니다.
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
+    "DATABASE_URL",
+    f"sqlite:///{os.path.join(app.instance_path, 'app.db')}"
+)
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db.init_app(app)
 
 # 애플리케이션의 기본 설정을 할 수 있습니다. (예: 비밀키)
 app.secret_key = 'your-very-secret-key'

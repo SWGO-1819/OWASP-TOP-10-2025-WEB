@@ -1,0 +1,12 @@
+route/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+.venv/
+*.db
+*.sqlite3
+instance/
+.git/
+.gitignore

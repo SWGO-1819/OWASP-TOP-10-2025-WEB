@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "CWE-20",
+    "name": "Improper Input Validation",
+    "description": "The product receives input or data, but it does not validate or incorrectly validates that the input has the properties that are required to process the data safely and correctly",
+    "url": "/A05/cwe-20",
+    "who": "홍재모"
+  }
+]
